@@ -134,7 +134,7 @@ return
 }
 
 
-ScribeAskMe	= function ScribeAskMe(txta,callback) {//console.log(phras+"!!!!!!!!!!!!!!!!")
+JarvisAskMe	= function JarvisAskMe(txta,callback) {//console.log(phras+"!!!!!!!!!!!!!!!!")
 	
 	sse.emit('/jarvispage', {command: "saying", 'html': txta,  'myIPretour': '192.168.0.11' })
 	Askme=1
