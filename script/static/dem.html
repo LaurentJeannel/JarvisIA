@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Lancement</title>
+    <link rel="stylesheet" href="stylesheetagenda.css"> 
+  </head>
+  
+  <body>
+
+
+  <div>
+<label >Veuillez choisir un nom pour Sarah comme Mathilde/ Clara ..... :</label>
+<input type="text" maxlength="512" id="searchTxt0"  placeholder="Mathilde" class="searchField"/>
+<input type="button" value="Valider" onclick="aa(searchTxt0.value,0)">
+ </div>
+
+
+
+  <div>
+<label >Emplacement principal de vos musiques:</label>
+<input type="text" maxlength="512" id="searchTxt1"  placeholder="C:/Users/famille/Music/" class="searchField"/>
+<input type="button" value="Valider" onclick="aa(searchTxt1.value,1)">
+ </div>
+
+
+  <div>
+<label >IP du Cube Canal + :</label>
+<input type="text" maxlength="512" id="searchTxt2"  placeholder="C:\Program Files" class="searchField"/>
+<input type="button" value="Valider" onclick="aa(searchTxt2.value,2)">
+ </div>
+
+<div>
+<label >Code Alarme :</label>
+<input type="text" maxlength="512" id="searchTxt3"  placeholder="une souris verte" class="searchField"/>
+<input type="button" value="Valider" onclick="aa(searchTxt3.value,3)">
+ </div>
+
+<div>
+<label >Nom de la personne qui recois le mail d'alerte :</label>
+<input type="text" maxlength="512" id="searchTxt4"  placeholder="Laurent" class="searchField"/>
+<input type="button" value="Valider" onclick="aa(searchTxt4.value,4)">
+ </div>
+
+<div>
+<label >Numéro de la personne qui recois le mail d'alerte :</label>
+<input type="text" maxlength="512" id="searchTxt5"  placeholder="0600000000" class="searchField"/>
+<input type="button" value="Valider" onclick="aa(searchTxt5.value,5)">
+ </div>
+
+<div>
+<label >Nom :</label>
+<input type="text" maxlength="512" id="searchTxt6"  placeholder="Laurent" class="searchField"/>
+<input type="button" value="Valider" onclick="aa(searchTxt6.value,6)">
+ </div>
+
+<div>
+<label >api key pushbulett :</label>
+<input type="text" maxlength="512" id="searchTxt7"  placeholder="o.xbcxbcxbcxbxcbx" class="searchField"/>
+<input type="button" value="Valider" onclick="aa(searchTxt7.value,7)">
+<a href="https://www.pushbullet.com/ " target="_blank">https://www.pushbullet.com/</a>
+ </div>
+
+<div>
+<label >Code sms pour lancer des actions depuis un sms:</label>
+<input type="text" maxlength="512" id="searchTxt8"  placeholder="0123456789" class="searchField"/>
+<input type="button" value="Valider" onclick="aa(searchTxt8.value,8)">
+ </div>
+
+ <div>
+<label >Emplacement du DD de votre dossier programme :</label>
+<input type="text" maxlength="512" id="searchTxt9"  placeholder="C:\Program Files" class="searchField"/>
+<input type="button" value="Valider" onclick="aa(searchTxt9.value,9)">
+ </div>
+
+ <div>
+<label >Emplacement du DD de votre deuxième dossier programme:</label>
+<input type="text" maxlength="512" id="searchTxt10"  placeholder="c:/program files (x86)" class="searchField"/>
+<input type="button" value="Valider" onclick="aa(searchTxt10.value,10)">
+ </div>
+
+
+<script>
+var aaa=[]
+
+function aa(value1,position){
+  console.log(value1+" ******")
+    if(value1!==''){
+     console.log(value1);aaa[position]=value1;console.log(aaa)
+    }
+}
+
+
+function bb(){console.log(searchTxt1.value)}
+ function bbb(){console.log("ff"+searchTxt2.value)}
+function bbbb(){console.log(aaa+"99999999")}
+
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
