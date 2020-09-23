@@ -135,38 +135,13 @@ for(var i=0;i<JarvisIANomPlugins.length;i++){
 
 
 var wiki=function(){
+	var tempo2=path.resolve('%CD%',"./script/wiki.js").replace('\\%CD%', '')
+		     		var temp = require(tempo2);
+					temp.init()
 
-console.log('passage par wikiiiii')
-var url2="https://www.google.fr/search?q="+JarvisIA.reco
-
-requestjarviswsrnodejs({'uri':url2, 'headers':{'Accept-Charset': 'windows-1252'},'encoding':'binary' }, function (error, response, html) {
-         $ = cheerio.load(html);
- 
-//Recherches associées
-//()
-var rechercheencart0=$('div.kCrYT:nth-child(4)').text()//wikip
-//console.log(rechercheencartd+"888888")
-if( rechercheencart0.length>0){console.log('');console.log("en 1  : "+rechercheencart0);JarvisIASpeech(rechercheencart0);return}
-
-var rechercheencart0=$('div.kCrYT:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)').text()
-if( rechercheencart0.length>0){console.log('');console.log("en 2  : "+rechercheencart0);JarvisIASpeech(rechercheencart0);return}
-//console.log(rechercheencartdd+"999999")
-//var rechercheencartddd=$('#main > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)').text()
-//console.log(rechercheencartddd+"10101010")
-		var rechercheencart=$('#main > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)').text()
-		if( rechercheencart.length>0){console.log("first :"+rechercheencart);JarvisIASpeech(rechercheencart);return }
-		else{ var rechercheencart=$('#main > div:nth-child(4) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)').text()
-			if( rechercheencart.length>0){console.log('');console.log("second : "+rechercheencart);JarvisIASpeech(rechercheencart);return }
-			else{
-			    var rechercheencart=$('#main > div:nth-child(4) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)').text()
-				if( rechercheencart.length>0){console.log('');console.log("third : "+rechercheencart);JarvisIASpeech(rechercheencart);return }
-			}//fin else
-		}//fin esle
-
-})//fin requestjarviswsrnodejs
-
-	return
-}
+					delete require.cache[require.resolve(tempo2)]
+return
+}//fin wiki
 
 
 if ( (req.query.reco.search(JarvisIANom)>-1)||(VarLazy=="1" ) ){console.log(JarvisIAItemtab,' passage lazy ',VarLazy,'VarLazy !!!!!!!!!!!')
