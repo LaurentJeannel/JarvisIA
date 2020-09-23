@@ -1,0 +1,10 @@
+{
+  "cron" : {
+    "courtoisie" :   { 
+      "name"       : "courtoisie",
+      "version"    : "26.0",
+      "description": "cron pour faire parler Mathilde à des heures précise",
+      "time"       : "5 0 * * *"
+    }
+  }
+}

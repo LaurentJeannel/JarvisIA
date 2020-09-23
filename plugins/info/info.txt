@@ -1,0 +1,2 @@
+<item>les informations<tag>data.infomiroir="0"</tag></item>
+<item>nepastouchercroninfomiroir<tag>data.infomiroir="1"</tag></item>

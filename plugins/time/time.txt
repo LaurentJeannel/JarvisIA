@@ -1,0 +1,7 @@
+﻿
+
+<item>il est quelle heure;peux-tu me donner l'heure;tu peux me donner l'heure<tag> data.heure="heure" </tag></item>
+<item>on est en quelle lune;quand se lève le soleil;quelle est la lune;il fait jour à quelle heure <tag> data.lune="lune"</tag></item>
+<item>nous sommes le combien;quelle est la date;quel jour sommes-nous;on est quel jour<tag>data.date="date"</tag></item>
+<item>quel est le saint du jour <tag> data.saint="saint";data.sainteee="saineeet"</tag></item>
+<item>quel est le dicton du jour <tag> data.dicton="dicton"</tag></item>
