@@ -17,9 +17,20 @@ var pathPlug=('./plugins')
 var files = fs.readdirSync(pathPlug)
 
 var os = require( 'os' );
-var networkInterfaces = os.networkInterfaces();
-var arr = networkInterfaces['Connexion au réseau local']
-JarvisIAIpMaster = arr[1].address;
+
+var interfaces = os.networkInterfaces();
+ var addresses = [];
+
+ Object.keys(interfaces).forEach((netInterface) => {
+  interfaces[netInterface].forEach((interfaceObject) => {
+   if (interfaceObject.family === 'IPv4' && !interfaceObject.internal) {
+    addresses.push(interfaceObject.address);
+   }
+  });
+ });
+ console.log( addresses[0]," addresse")
+
+JarvisIAIpMaster = addresses[0];
 
 levenshtein=require('levenshtein')
 
@@ -34,6 +45,7 @@ JarvisIAPlugins={};
 JarvisIAItem="";
 JarvisIANomPlugins=[]
 
+ 
 
 var tempo1=path.resolve('%CD%',"./script/plugin.js").replace('\\%CD%', '')
 		     		var temp = require(tempo1);
@@ -132,4 +144,7 @@ var proc = 'start chrome -no-border "https://127.0.0.1:4300"'
 
 }//fin autorun
 
-}catch(err){console.log('');console.log(err)}
+}catch(err){setTimeout(function(){}, 100000);
+	console.log('');console.log(err)
+
+}

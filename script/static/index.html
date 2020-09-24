@@ -181,7 +181,8 @@ if (window.navigator.userAgent.indexOf("Linux")          != -1) OSName="Linux";
 console.log('os name    : ',OSName+window.navigator.userAgent)
 
 
-
+var dp=function ()
+{
 
 
  //IP 
@@ -195,14 +196,14 @@ pc.createOffer(pc.setLocalDescription.bind(pc), noop);// create offer and set lo
 
 pc.onicecandidate = function(ice)
 
-{console.log(ice.candidate.candidate,'            ice candidate candidate');
+{console.log(ice.candidate.candidate,'      ******      ice candidate candidate');
 myIPvv = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
-console.log(myIPvv,'   : myIPvv')
+console.log(myIPvv,'   :fffffffffff myIPvv')
   //console.log(ice,ice.candidate)
  if (ice && ice.candidate && ice.candidate.candidate)
  {
    myIP =ice.candidate.address
-  console.log('myIP     : ', myIP);   
+  console.log('myIP    sssssssssss : ', myIP);   
   pc.onicecandidate = noop;
 
 document.getElementById("iplocal").innerHTML = ". My Ip : "+ myIP;
@@ -229,15 +230,17 @@ document.getElementById("iplocal").innerHTML = ". My Ip : "+ myIP;
 
     } catch (e)
     { console.log('e.message            : ',e.message);}
-}
+}//discover
 
 function noop()
 {
 }
 
+
+
 function onIceCandidate(ice)
 {   
-    console.log('ice candidate                   :   ',ice.candidate);
+    console.log('ice candidate            gss       :   ',ice.candidate);
 
     if(!ice || !ice.candidate || !ice.candidate.candidate)  return;
 
@@ -246,15 +249,71 @@ function onIceCandidate(ice)
     this.onicecandidate = noop;
     myIP=my_ip
     document.getElementById("iplocal").innerHTML = ". My Ip : "+ myIP;
-console.log(my_ip,'            my_ip')
-    ip = my_ip.split(".")[0]+'.'+my_ip.split(".")[1]+'.'+my_ip.split(".")[2];console.log(ip,'                  ip')
-}
-discover()
+console.log(my_ip,'   sssssssss         my_ip')
+    ip = my_ip.split(".")[0]+'.'+my_ip.split(".")[1]+'.'+my_ip.split(".")[2];console.log(ip,'   fhffhfh               ip')
+}//onice
+
+//discover()
  //  
   //console.log('my IP: ', myIP);   
   //pc.onicecandidate = noop;
 //var textip = "<marquee>ip local : </marquee>";
 //document.getElementById("iplocal").innerHTML = ". My Ip : "+ myIP;
+
+ }
+dp()
+
+//IP 
+var ipp=function(){
+ window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;//compatibility for Firefox and chrome
+var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};      
+pc.createDataChannel('');//create a bogus data channel
+pc.createOffer(pc.setLocalDescription.bind(pc), noop);// create offer and set local description
+pc.onicecandidate = function(ice)
+{
+ if (ice && ice.candidate && ice.candidate.candidate)
+ {
+   myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
+  console.log('my IP 1 sssssss: ', myIP);   
+  pc.onicecandidate = noop;
+//var textip = "<marquee>ip local : </marquee>";
+document.getElementById("iplocal").innerHTML = ". My Ip : "+ myIP;
+
+
+
+ }
+};
+ }//fin ipp
+
+//ipp()
+
+
+
+
+
+
+
+ //IP 
+ window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;//compatibility for Firefox and chrome
+var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};      
+pc.createDataChannel('');//create a bogus data channel
+pc.createOffer(pc.setLocalDescription.bind(pc), noop);// create offer and set local description
+pc.onicecandidate = function(ice)
+{
+ if (ice && ice.candidate && ice.candidate.candidate)
+ {
+   myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
+  console.log('my IP: ', myIP);   
+  pc.onicecandidate = noop;
+//var textip = "<marquee>ip local : </marquee>";
+document.getElementById("iplocal").innerHTML = ". My Ip : "+ myIP;
+
+
+
+ }
+};
+
+
 
 
 
@@ -282,8 +341,8 @@ console.log('voice 0              ',voices[0].name)
 //});
  }, 1000);
 
-
-
+//window.speechSynthesis.cancel();
+//speechSynthesisInstance.cancel();
 //////////debut
   
 // SSE depuis wsrnode
@@ -304,7 +363,7 @@ console.log('voice 0              ',voices[0].name)
   //recognition.serviceURI = 'wami.csail.mit.edu'
  if(OSName.search("Windows")>-1){
      recognition.interimResults = false
-     recognition.continuous = true
+     recognition.continuous = false
  }
 
 
@@ -524,12 +583,13 @@ document.getElementById("SCENARIO").innerHTML = textscenario;
                 
                  var r = setInterval(function () {
                 console.log(speechSynthesis.speaking+"                  speaking");
-                if (!speechSynthesis.speaking) {clearInterval(r);document.getElementById("myImgvisage").src ="icones/Images/0.gif"}
-                else {speechSynthesis.resume();//document.getElementById("myImgvisage").src ="icones/Images/0.png"
+                if (speechSynthesis.speaking==true) {clearInterval(r);document.getElementById("myImgvisage").src ="icones/Images/0.gif"}
+                else {speechSynthesis.cancel();speechSynthesis.resume();//document.getElementById("myImgvisage").src ="icones/Images/0.png"
               }
             }, 14000);
-                  
+    // speechSynthesisInstance.cancel();             
                     msg.onend = function (event) {document.getElementById("myImgvisage").src ="icones/Images/0.gif"
+                        //speechSynthesisInstance.cancel();
                         var Radio=document.getElementById("myRadio")              
                           if(Radio.paused){Radio.play()}
                         console.log('                      fin de paroleeeee')
