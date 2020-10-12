@@ -17,7 +17,7 @@ var pathPlug=('./plugins')
 var files = fs.readdirSync(pathPlug)
 
 var os = require( 'os' );
-
+try{
 var interfaces = os.networkInterfaces();
  var addresses = [];
 
@@ -31,7 +31,8 @@ var interfaces = os.networkInterfaces();
  console.log( addresses[0]," addresse")
 
 JarvisIAIpMaster = addresses[0];
-
+}
+catch(err){console.log('error ip detection, please contact creator whith error #001');setTimeout(function(){  }, 10000);}
 levenshtein=require('levenshtein')
 
 Askme=0
