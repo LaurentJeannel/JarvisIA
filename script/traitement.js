@@ -43,7 +43,8 @@ for(var i=0;i<JarvisIANomPlugins.length;i++){
 			     			}//fin try
 			     			catch(err){console.log(JarvisIAPlugins[JarvisIANomPlugins[i]][j+1]);eval(JarvisIAPlugins[JarvisIANomPlugins[i]][j+1])}
 							if(data.lazy!==undefined){
-								console.log("Lazy ==> 		",data);try{console.log(data.tts," 			valeur tts")}catch(err){}
+								console.log("Lazy ==> 		",data);
+								try{console.log(data.tts," 			valeur tts");if(data.tts!==undefined){JarvisIASpeech(data.tts);console.log('doneeeeeeee')}}catch(err){}
 									if(data.lazy=="off"){try{console.log(data.tts,"			vameur tts")}catch(err){}
 										var tempo1=path.resolve('%CD%',"./script/plugin.js").replace('\\%CD%', '')
 				     					var smartlife1 = require(tempo1);
@@ -51,14 +52,16 @@ for(var i=0;i<JarvisIANomPlugins.length;i++){
 										return
 							}
 						var tempo1=path.resolve('%CD%',"./script/plugin.js").replace('\\%CD%', '')
-		     			var smartlife1 = require(tempo1);try{console.log(data.tts,"			valeur tts")}catch(err){}
+		     			var smartlife1 = require(tempo1);
+		     			try{console.log(data.tts,"			valeur tts");if(data.tts!==undefined){JarvisIASpeech(data.tts);console.log('doneeeeeeee')}}catch(err){}
 						smartlife1.initlazy(data,JarvisIANomPlugins[i])
 
 						delete require.cache[require.resolve(tempo1)]
 						return
 					}     	
 			     			var tempo=path.resolve('%CD%',"./plugins/"+JarvisIANomPlugins[i]+"/"+JarvisIANomPlugins[i]+".js").replace('\\%CD%', '')
-			     			var smartlife = require(tempo);try{console.log(data.tts,"				valeur tts")}catch(err){}
+			     			var smartlife = require(tempo);
+			     			try{console.log(data.tts,"				valeur tts");if(data.tts!==undefined){JarvisIASpeech(data.tts);console.log('doneeeeeeee')}}catch(err){}
 							try{smartlife.action(data)}
 							catch(err){
 										console.log(err)
@@ -100,7 +103,7 @@ for(var i=0;i<JarvisIANomPlugins.length;i++){
 					     			try{
 							     		var tempo=path.resolve('%CD%',"./plugins/"+JarvisIANomPlugins[i]+"/"+JarvisIANomPlugins[i]+".js").replace('\\%CD%', '')
 							     		var smartlife = require(tempo);
-							     		try{console.log(data.tts," 			tts")}catch(err){}
+							     		try{console.log(data.tts," 			tts");if(data.tts!==undefined){JarvisIASpeech(data.tts);console.log('doneeeeeeee')}}catch(err){}
 										try{smartlife.action(data)}
 										catch(err){delete require.cache[require.resolve(tempo)]
 							 			data={};return}
@@ -112,7 +115,7 @@ for(var i=0;i<JarvisIANomPlugins.length;i++){
 										console.log('');console.log(err,"erreur in plug ........")
 										var tempo=path.resolve('%CD%',"./plugins/"+JarvisIANomPlugins[i]+"/"+JarvisIANomPlugins[i]+".js").replace('\\%CD%', '')
 							     		var smartlife = require(tempo);
-							     		try{console.log(data.tts,"			tts")}catch(err){}
+							     		try{console.log(data.tts,"			tts");if(data.tts!==undefined){JarvisIASpeech(data.tts);console.log('doneeeeeeee')}}catch(err){}
 										try{smartlife.action()}
 										catch(err){delete require.cache[require.resolve(tempo)]
 							 			data={}
@@ -209,7 +212,8 @@ for(var i=0;i<JarvisIANomPluginsNoRules.length;i++){
 			     			}//fin try
 			     			catch(err){console.log(JarvisIAPluginsNoRules[JarvisIANomPluginsNoRules[i]][j+1]);eval(JarvisIAPluginsNoRules[JarvisIANomPluginsNoRules[i]][j+1])}
 					if(data.lazy!==undefined){
-						console.log("Lazy ==> ",data);try{console.log(data.tts,"          tts")}catch(err){}
+						console.log("Lazy ==> ",data);
+						try{console.log(data.tts,"          tts");if(data.tts!==undefined){JarvisIASpeech(data.tts);console.log('doneeeeeeee')}}catch(err){}
 							if(data.lazy=="off"){try{console.log(data.tts,"          tts")}catch(err){}
 								var tempo1=path.resolve('%CD%',"./script/plugin.js").replace('\\%CD%', '')
 		     					var smartlife1 = require(tempo1);
@@ -225,7 +229,7 @@ for(var i=0;i<JarvisIANomPluginsNoRules.length;i++){
 					}     	
 			     			var tempo=path.resolve('%CD%',"./plugins/"+JarvisIANomPluginsNoRules[i]+"/"+JarvisIANomPluginsNoRules[i]+".js").replace('\\%CD%', '')
 			     			var smartlife = require(tempo);
-			     			try{console.log(data.tts,"        tts")}catch(err){}
+			     			try{console.log(data.tts,"        tts");if(data.tts!==undefined){JarvisIASpeech(data.tts);console.log('doneeeeeeee')}}catch(err){}
 							try{smartlife.action(data)}
 							catch(err){delete require.cache[require.resolve(tempo)]
 				 			data={}
