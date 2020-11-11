@@ -1,0 +1,14 @@
+
+     <item>vérifie la domotique <tag> data.verifdomo="vérif"</tag></item>
+     <item>allume la <tag> data.verifdomo="1"</tag></item>
+     <item>allume le <tag> data.verifdomo="1"</tag></item>
+     <item>allume l' <tag> data.verifdomo="1"</tag></item>
+     
+     <item>mets la température de la lampe <tag> data.verifdomo="1"</tag></item>
+           <item>mets la température de la l'ampoule <tag> data.verifdomo="1"</tag></item>
+         <item>mets la luminosité de<tag> data.verifdomo="1"</tag></item>
+     <item>mets la couleur de <tag> data.verifdomo="1"</tag></item>
+    
+     <item>éteins la <tag> data.verifdomo="0"</tag></item>
+     <item>éteins le <tag> data.verifdomo="0"</tag></item>
+     <item>éteins l' <tag> data.verifdomo="0"</tag></item>

@@ -48,10 +48,10 @@ for(var a=0;a<files.length;a++){
     				 catch(err){var datafile=["data.xxxxxxxxxxxxxxxxxxxxxxxxxx='xxxxxxxxxxxxxxxxxxxxxxxxxx'"]}
            
                 for(var x=0;x<phrasesfinal.length;x++){
-                JarvisIAItemtab.push(phrasesfinal[x])
-}
-                
-    					if(JarvisIAItem!==""){JarvisIAItem=JarvisIAItem+","+phrasesfinal} 
+                if(phrasesfinal[x]!==""){JarvisIAItemtab.push(phrasesfinal[x])}
+                else{JarvisIAItemtab.push("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")}
+    					}
+              if(JarvisIAItem!==""){JarvisIAItem=JarvisIAItem+","+phrasesfinal} 
     					 else{JarvisIAItem=phrasesfinal}
 
     						for(w=0;w<phrasesfinal.length;w++){
@@ -59,7 +59,8 @@ for(var a=0;a<files.length;a++){
     						}
     						for(w=0;w<datafile.length;w++){
     							datafile[w]=datafile[w].trim()
-    						}
+    						if(datafile[w]==""){datafile[w]="data.xxxxxxxxxxxxxxxxxxxxxxxxxx='xxxxxxxxxxxxxxxxxxxxxxxxxx'"}
+                }
 					JarvisIAPlugins[files[a].toLowerCase()].push(phrasesfinal) ; JarvisIAPlugins[files[a].toLowerCase()].push(datafile)
     			}
 /////////////////
@@ -89,7 +90,8 @@ for(var b=0;b<filestxtNoRules.length-1;b++){//phrases 1 à 1
                      
         
                 for(var x=0;x<phrasesfinal.length;x++){
-                JarvisIAItemtabNoRules.push(phrasesfinal[x])
+                if(phrasesfinal[x]!==""){JarvisIAItemtabNoRules.push(phrasesfinal[x])}
+else{JarvisIAItemtabNoRules.push("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")}
 }
                 
                         if(JarvisIAItemNoRules!==""){JarvisIAItemNoRules=JarvisIAItemNoRules+","+phrasesfinal} 
@@ -100,6 +102,7 @@ for(var b=0;b<filestxtNoRules.length-1;b++){//phrases 1 à 1
                             }
                             for(w=0;w<datafile.length;w++){
                                 datafile[w]=datafile[w].trim()
+                                if(datafile[w]==""){datafile[w]="data.xxxxxxxxxxxxxxxxxxxxxxxxxx='xxxxxxxxxxxxxxxxxxxxxxxxxx'"}
                             }
                     JarvisIAPluginsNoRules[files[a].toLowerCase()].push(phrasesfinal) ; JarvisIAPluginsNoRules[files[a].toLowerCase()].push(datafile)
                 }
@@ -189,7 +192,8 @@ var files = data.lazy
                      
                    
                 for(var x=0;x<phrasesfinal.length;x++){
-                JarvisIAItemtab.push(phrasesfinal[x])
+                if(phrasesfinal[x]!==""){JarvisIAItemtab.push(phrasesfinal[x])}
+                else{JarvisIAItemtab.push("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")}
                 }
                
                         if(JarvisIAItem!==""){JarvisIAItem=JarvisIAItem+","+phrasesfinal} 
@@ -200,6 +204,7 @@ var files = data.lazy
                             }
                             for(w=0;w<datafile.length;w++){
                                 datafile[w]=datafile[w].trim()
+                                if(datafile[w]==""){datafile[w]="data.xxxxxxxxxxxxxxxxxxxxxxxxxx='xxxxxxxxxxxxxxxxxxxxxxxxxx'"}
                             }
                     JarvisIAPlugins[nomplug].push(phrasesfinal) ; JarvisIAPlugins[nomplug].push(datafile)
                 }//for b

@@ -1,9 +1,8 @@
-
 var audioContext = null;
 var meter = null;
 var canvasContext = null;
 var WIDTH=1000;
-var HEIGHT=500;
+var HEIGHT=5;
 var rafID = null;
 
 window.onload = function() {

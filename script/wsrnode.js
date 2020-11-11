@@ -127,15 +127,17 @@ https.createServer({
 autorun_browser(false);
 
 setTimeout(function(){ 
-	console.log("texte d'acceuil")
+	console.log("")
 JarvisIASpeech("système activé et opérationnel, en attente d'instruction")
  }, 10000);
 function autorun_browser(kill) {
 	var exec = require('child_process').exec;
 	if (kill==true) { var proc = JarvisIANircmd + 'closeprocess chrome.exe'}
 	else {	
-var proc = 'start chrome -no-border "https://127.0.0.1:4300"'
+var proc = 'start chrome.exe --app=https://127.0.0.1:4300 '
+//var proc = 'start chrome.exe --window-size=800,600 --app=https://127.0.0.1:4300 --new-window'
 //var proc = 'C:\\JarvisIA\\chrome-win\\chrome "https://127.0.0.1:4300 " '
+//--kiosk http://example.com/
 	}
 //chrome.exe --app=https://duckduckgo.com --new-window
 	var child = exec(proc, function (error, stdout, stderr) {	

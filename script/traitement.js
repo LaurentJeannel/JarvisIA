@@ -15,7 +15,7 @@ try{
 			return	
 		}	
 
-var levi=function(){
+var levi=function levi(){
 
 	for(var i=0;i<JarvisIAItemtab.length;i++){
 		var levitest=levenshtein(JarvisIAItemtab[i],txt)
@@ -31,7 +31,7 @@ var levi=function(){
 		else{console.log('rien donc stop car lazy'); return}
 }
 			
-var indextraitement=function(){//console.log(JarvisIANomPlugins.length,"sssss")
+var indextraitement=function indextraitement(){//console.log(JarvisIANomPlugins.length,"sssss")
 for(var i=0;i<JarvisIANomPlugins.length;i++){
 					for (var j=0;j<JarvisIAPlugins[JarvisIANomPlugins[i]].length;j++){//   console.log(JarvisIAPlugins[JarvisIANomPlugins[i]][j]) 
 				    	if(JarvisIAPlugins[JarvisIANomPlugins[i]][j].indexOf(txt)>-1){
@@ -82,7 +82,7 @@ for(var i=0;i<JarvisIANomPlugins.length;i++){
 return
 }//fin var index
 
-var searchtraitement=function(){
+var searchtraitement=function searchtraitement(){
 console.log("search : "+txt)
 for(var a=0;a<JarvisIAItemtab.length;a++){
 if(txt.search(JarvisIAItemtab[a])>-1){console.log('FIND 	 '+txt.search(JarvisIAItemtab[a])+" "+JarvisIAItemtab[a]);txt=JarvisIAItemtab[a]}
@@ -137,7 +137,7 @@ for(var i=0;i<JarvisIANomPlugins.length;i++){
 }
 
 
-var wiki=function(){
+var wiki=function wiki(){
 	var tempo2=path.resolve('%CD%',"./script/wiki.js").replace('\\%CD%', '')
 		     		var temp = require(tempo2);
 					temp.init()

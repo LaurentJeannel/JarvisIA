@@ -1,10 +1,9 @@
 
 <html>
   <head>
-    <meta charset="utf8">
-    
-    <title>Speech API</title>
-    
+    <meta charset="utf8">   
+    <title>JARVIS IA</title>
+    <link rel="shortcut icon" type="image/ico" href="/jarvis.ico"/>
     <link rel="stylesheet" href="style.css">
   </head>
   
@@ -16,282 +15,88 @@
                           <script type="text/javascript" src="heure.js"></script>
                           <script type="text/javascript">window.onload = heure('heure');</script>
                           </span>
-                          
-                          
+                           
                           <span id="date">
                           <script type="text/javascript" src="date.js"></script>
                           <script type="text/javascript">window.onload = date('date');</script>
                           </span>
 
-                          <span id="iplocal"></span>
-                      
-
+                          <span id="iplocal"></span>                     
 
 <div id="SCENARIO"></div>
 <div id="INFOMODIALE"></div>
 
-
-
- <div class="course">liste des courses : <span class="plugin_course"></span></div>
+<div class="course">liste des courses : <span class="plugin_course"></span></div>
  <div class="notification">NOTIFICATION : <span class="plugin_notification"></span></div>
 
-
-
-
   <div class="Imgalerte">
-<img id="Imgalerte" src="" width="200" height="200" align="right">
-</div>
+<img id="Imgalerte" src="" width="100" height="100" align="right">
+</div>                    
  
-                        
- 
-
-
-
-
-             <center><img id="myImgvisage" src="icones/Images/0.gif" height="400" width="400">   
-                
-  
-    
-
-
-             <button onclick="recognition.start()">Start</button>
+           <center><img id="myImgvisage" src="icones/Images/0.gif" height="200" width="200">   
+            <button onclick="recognition.start()">Start</button>
              <button onclick="recognition.stop()">Stop</button>
 <p></p>
 
-                  <textarea id="textarea" rows=2 cols=50 style="background:black;color:white" ></textarea>
+                  <textarea id="textarea" rows=1 cols=50 style="background:black;color:white" ></textarea>
 
 <input type="text" maxlength="512" id="searchTxt"  placeholder="Entrez une phrase" class="searchField" onkeypress="if (event.keyCode==13){ aa();return false;}"/>
 <input type="button" value="Envoyer texte" onclick="aa()">
 <p></p>
-                  <textarea id="textarearesponse" rows=10 cols=150 style="background:black;color:white" ></textarea>
+                  <textarea id="textarearesponse" rows=5 cols=100 style="background:black;color:white" ></textarea>          
 
-    
-          
-
-         <audio id="myRadio" controls autoplay>
+         <audio controls style="height: 20px;" id="myRadio" controls autoplay>
 
             <source src="" type="audio/mpeg">
             Your browser does not support the audio element.
           
           </audio>
-
-  
-           
-
-            <audio id="myMusique" controls autoplay>
-              
+            <audio controls style="height: 20px;" id="myMusique" controls autoplay>             
               <source src="" type="audio/mpeg">
-              Your browser does not support the audio element.
-            
+              Your browser does not support the audio element.            
             </audio></center>
 
+<iframe id="deezer" scrolling="no" frameborder="0" allowTransparency="true" src="http://www.deezer.com/plugins/player?format=classic&autoplay=true&playlist=false&width=700&height=350&color=007FEB&layout=dark&size=small&type=artist&id=" width="700" height="90"></iframe>
 
-
-
-
-
-
-<div id="contenddddtmain">
+<div id="alarme">
 
 <script src="volume-meter.js"></script>
-
-
 <script src="main.js"></script>
 </div>
 
-
-
-
-
-
-
-
 <script>
- //window.open('https://waytolearnx.com', '_blank'); 
+
+  window.resizeTo(800,600)
+
 var xmlhttp;
   xmlhttp=new XMLHttpRequest();
 myIPinterphone=""
 
-function aa(){
-  console.log('searchTxt :            ', searchTxt.value);
-  var txt=searchTxt.value
-  console.log('textsplit        ',txt.split(';'))
-  var txt=txt.split(';')
-  if (txt.length>1){myIPinterphone=txt[1];txt=txt[0]}
-  else{myIPinterphone=""  ; txt=txt[0]}
-  sendData(txt)
-  //aaa.push(searchTxt.value)
-document.getElementById('searchTxt').value = "";
-}
-
-//<marquee>INFOS MONDIALES : </marquee>
 var text = "<marquee>INFOS MONDIALES : </marquee>";
 document.getElementById("INFOMODIALE").innerHTML = text;
 
-//var textip = "<marquee>ip local : </marquee>";
-//document.getElementById("iplocal").innerHTML = textip;
-
 var textscenario = "<marquee>SCENARIO : </marquee>";
 document.getElementById("SCENARIO").innerHTML = textscenario;
-//document.getElementById("deezer").src = obj.Deezer;
-setTimeout(function(){
-//  recognition.start() ; console.log('onnnn')
-document.getElementById("myImgvisage").src ="icones/Images/0.gif"
 
-}, 4000);
-
-//location.reload();
-
-//chrome://flags/#autoplay-policy
-    
-supervariable=0
-var coupureson=0
+ coupureson=0 //coupure reco/parole
 var Radio=document.getElementById("myRadio")
 var Musique=document.getElementById("myMusique")
-//console.log(document.getElementById("deezer").src+"55555555")
- 
 
   function $( selector ) {
   return document.querySelector( selector )
 }
 
-var DOMsay = $ ('.say');
-var DOMsmiley = $ ('.smiley');
-var DOMplugin = $ ('.plugin_name');
-var DOMtexte = $ ('.plugin_texteplugin');
-var DOMicone = $('.plugin_icone');
 var DOMnotification = $('.plugin_notification');
 var DOMcourse = $('.plugin_course');
 var DOMalarmeaudio = $('.plugin_alarmeaudio');
-var DOMvisage = $('.plugin_visage');
-
-
 
 //système
 var OSName = "Unknown";
-if (window.navigator.userAgent.indexOf("Windows NT 10.0")!= -1) OSName="Windows 10";
-if (window.navigator.userAgent.indexOf("Windows NT 6.2") != -1) OSName="Windows 8";
-if (window.navigator.userAgent.indexOf("Windows NT 6.1") != -1) OSName="Windows 7";
-if (window.navigator.userAgent.indexOf("Windows NT 6.0") != -1) OSName="Windows Vista";
-if (window.navigator.userAgent.indexOf("Windows NT 5.1") != -1) OSName="Windows XP";
-if (window.navigator.userAgent.indexOf("Windows NT 5.0") != -1) OSName="Windows 2000";
+if (window.navigator.userAgent.indexOf("Windows")!= -1) OSName="Windows";
 if (window.navigator.userAgent.indexOf("Mac")            != -1) OSName="Mac/iOS";
 if (window.navigator.userAgent.indexOf("X11")            != -1) OSName="UNIX";
 if (window.navigator.userAgent.indexOf("Linux")          != -1) OSName="Linux";
-console.log('os name    : ',OSName+window.navigator.userAgent)
-
-
-var dp=function ()
-{
-
-
- //IP 
- window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;//compatibility for Firefox and chrome
-var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};
-
-
-
-pc.createDataChannel('');//create a bogus data channel
-pc.createOffer(pc.setLocalDescription.bind(pc), noop);// create offer and set local description
-
-pc.onicecandidate = function(ice)
-
-{console.log(ice.candidate.candidate,'      ******      ice candidate candidate');
-myIPvv = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
-console.log(myIPvv,'   :fffffffffff myIPvv')
-  //console.log(ice,ice.candidate)
- if (ice && ice.candidate && ice.candidate.candidate)
- {
-   myIP =ice.candidate.address
-  console.log('myIP    sssssssssss : ', myIP);   
-  pc.onicecandidate = noop;
-
-document.getElementById("iplocal").innerHTML = ". My Ip : "+ myIP;
-
-
-
- }
-};
-
- //IP 
- function discover()
-{
-    try{
-        //Get Local IP
-        window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;   //compatibility for firefox and chrome
-
-        if (pc)
-            pc.close();
-
-        pc = new RTCPeerConnection({iceServers:[]});   
-        pc.onicecandidate = onIceCandidate;   
-        pc.createDataChannel("");   
-        pc.createOffer(pc.setLocalDescription.bind(pc), noop);   
-
-    } catch (e)
-    { console.log('e.message            : ',e.message);}
-}//discover
-
-function noop()
-{
-}
-
-
-
-function onIceCandidate(ice)
-{   
-    console.log('ice candidate            gss       :   ',ice.candidate);
-
-    if(!ice || !ice.candidate || !ice.candidate.candidate)  return;
-
-    var my_ip = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
-
-    this.onicecandidate = noop;
-    myIP=my_ip
-    document.getElementById("iplocal").innerHTML = ". My Ip : "+ myIP;
-console.log(my_ip,'   sssssssss         my_ip')
-    ip = my_ip.split(".")[0]+'.'+my_ip.split(".")[1]+'.'+my_ip.split(".")[2];console.log(ip,'   fhffhfh               ip')
-}//onice
-
-//discover()
- //  
-  //console.log('my IP: ', myIP);   
-  //pc.onicecandidate = noop;
-//var textip = "<marquee>ip local : </marquee>";
-//document.getElementById("iplocal").innerHTML = ". My Ip : "+ myIP;
-
- }
-dp()
-
-//IP 
-var ipp=function(){
- window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;//compatibility for Firefox and chrome
-var pc = new RTCPeerConnection({iceServers:[]}), noop = function(){};      
-pc.createDataChannel('');//create a bogus data channel
-pc.createOffer(pc.setLocalDescription.bind(pc), noop);// create offer and set local description
-pc.onicecandidate = function(ice)
-{
- if (ice && ice.candidate && ice.candidate.candidate)
- {
-   myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
-  console.log('my IP 1 sssssss: ', myIP);   
-  pc.onicecandidate = noop;
-//var textip = "<marquee>ip local : </marquee>";
-document.getElementById("iplocal").innerHTML = ". My Ip : "+ myIP;
-
-
-
- }
-};
- }//fin ipp
-
-//ipp()
-
-
-
-
-
-
+console.log('os name    : ',OSName+OSName)
 
  //IP 
  window.RTCPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;//compatibility for Firefox and chrome
@@ -305,54 +110,42 @@ pc.onicecandidate = function(ice)
    myIP = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(ice.candidate.candidate)[1];
   console.log('my IP: ', myIP);   
   pc.onicecandidate = noop;
-//var textip = "<marquee>ip local : </marquee>";
 document.getElementById("iplocal").innerHTML = ". My Ip : "+ myIP;
-
-
-
  }
 };
 
 
-
-
-
-
-
-//voice
+voicess=function(){
 speechSynthesis.getVoices().forEach(function(voice) {
-  var nb=nb+1
-  //console.log("numéro "+nb+" : "+voice.name, voice.default ? voice.default :'');
-});
+ });
 
 setTimeout(function(){ //mise en forme voice
 nbvoice=-1
 msg = new SpeechSynthesisUtterance();
 voices = window.speechSynthesis.getVoices();
-msg.voice = voices[0]; // Note: some voices don't support altering params
+//msg.voice = voices[0]; // Note: some voices don't support altering params
 msg.voiceURI = 'native';
 msg.volume = 1; // 0 to 1
 msg.rate = 1; // 0.1 to 10
 msg.pitch = 1; //0 to 2
 msg.lang = 'fr-FR';
-console.log('voice 0              ',voices[0].name)
-//speechSynthesis.getVoices().forEach(function(voice) { nbvoice=nbvoice+1
-  //console.log("numéro "+nbvoice+" : "+voice.name, voice.default ? voice.default :''+voices[0]);
-//});
- }, 1000);
+  speechSynthesis.getVoices().forEach(function(voice) { nbvoice=nbvoice+1
+    console.log("numéro "+nbvoice+" : "+voice.name, voice.default ? voice.default :''+voices[0]);
+      for(var j=0;j<voices.length;j++){
+        if(voices[j].name.search('Google français')>-1){console.log("voice  ; ",j);msg.voice = voices[j]}
+      }
+    });
+  }, 1000);
+}
+voicess()
 
-//window.speechSynthesis.cancel();
-//speechSynthesisInstance.cancel();
 //////////debut
   
 // SSE depuis wsrnode
   var channel = new EventSource('/jarvispage');
   channel.addEventListener('message', function(ev) {
-
-   
    console.log('ev                  :   ',ev); jarvispageEvents(ev);
   })
-
 
 
 // var reco
@@ -360,58 +153,41 @@ console.log('voice 0              ',voices[0].name)
   recognition = new SpeechRecognition()
   recognition.lang = "fr-FR"
 
-  //recognition.serviceURI = 'wami.csail.mit.edu'
  if(OSName.search("Windows")>-1){
      recognition.interimResults = false
      recognition.continuous = false
  }
 
 
-
-
-
-//.onaudiostart = function() { ... };
 recognition.onend = function() {
 
-  if(OSName.search("Windows")>-1){//console.log("qqqqqqqqqqqqqqqqqqqqq"+supervariable)
-    // recognition.stop()
-    if(supervariable==0){
-
-      recognition.start()
-  }
+  if((OSName.search("Windows")>-1)&&(coupureson==0)){
+   recognition.start()
 }
   console.log('                       fin de la reco')
-
 };
-//.onend = function() { ... }; 
+
 
 if(OSName.search("Windows")>-1){////////alarme
-document.getElementById("contenddddtmain").innerHTML='<canvas id="meter" width="500" height="50"></canvas>'
-
-//console.log( 'doc contenddddtmain                     ',document.getElementById("contenddddtmain").innerHTML)
+document.getElementById("alarme").innerHTML='<canvas id="meter" width="500" height="5"></canvas>'
 }
 
-
-
 //if send
-    recognition.onresult = function (event) {//console.log('ddddddddddddd' +supervariable)
+    recognition.onresult = function (event) {
           console.log(event.results+"                    event results")
           for (i = event.resultIndex; i < event.results.length; i++) { 
 
-                var result = event.results[ event.resultIndex ];//console.log( result.isFinal +"!gg!!!!!")
+                var result = event.results[ event.resultIndex ];
               
                     if(result.isFinal===true){
                         textarea.value = event.results[i][0].transcript + "\n"
-                        //  document.getElementById("span").innerHTML =
-                        //  Math.round(event.results[i][0].confidence * 100) + " %"
+              
                            if(coupureson==0){
                               console.log("area value :                 "+textarea.value)
                               sendData(textarea.value)
                            }
                            else{}
-                          //recognition.stop()
-                          //console.log("stopppp")
-                          //setTimeout(function(){recognition.start() ; console.log('onnnn')}, 3000);
+                         
                     }
 
                     else{textarea.value = event.results[i][0].transcript + "\n";}      
@@ -421,17 +197,14 @@ document.getElementById("contenddddtmain").innerHTML='<canvas id="meter" width="
   }
 
 
-
 ////send function
-function sendData(txt, confidence, type, force) {//location.reload();
+function sendData(txt, confidence, type, force) {
   confidence=myIP
   type="reco"
   txt=txt.replace('%','pour cent')
-  if(myIPinterphone==""){console.log("Send : " + txt + "(" + confidence + ")" + (force==true ? ' - FORCE': '') )}
-else{console.log("Send : " + txt + "(" + myIPinterphone + ")" + (force==true ? ' - FORCE': '') )};
+  if(myIPinterphone==""){console.log("Send without interphone : " + txt + "(" + confidence + ")" + (force==true ? ' - FORCE': '') )}
+else{console.log("Send : par interphone" + txt + "(" + myIPinterphone + ")" + (force==true ? ' - FORCE': '') )};
   
-  
-  //var url = "/sarah?" + type + "=" + txt + "&confidence=" + parseFloat( confidence ).toPrecision( 2 ) ;
   if(myIPinterphone==""){var url = "/jarvis?" + type + "=" + txt + "&confidence=" +  confidence}
     else{var url = "/jarvis?" + type + "=" + txt + "&confidence=" +  myIPinterphone}
   if (typeof force !== 'undefined') url+= '&force=' + force;
@@ -442,19 +215,12 @@ recognition.stop();
 myIPinterphone=""
 }
 
-
-///////////////////////
-///////////////////////
-
 //////////////////////
 //////////////////////
-
-var speaking = false;
-var tokenSarahAnim;
 
 function jarvispageEvents(ev) {
   obj = JSON.parse(ev.data);console.log("commande recus                 "+obj.command);
-  //console.log(obj.command+obj.html+obj.plugin+obj.timeout+obj.pause+obj.myIPretour+'retoru !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+
  if( (obj.command=='texteplugin')&&(obj.texteplugin.search("receivesms")>-1 ) ){
     var text=obj.texteplugin;
     var text=text.replace(new RegExp("receivesms","gi"),"");
@@ -465,154 +231,77 @@ if( (obj.command=='texteplugin')&&(obj.texteplugin.search("course")>-1 ) ){
     //var text=text.replace(new RegExp("course","gi"),"");
     DOMcourse.textContent = text;
 }   
+ 
   switch (obj.command) {
   
     case 'refresh':
       location.reload();
       break;
  
-    case 'forceSend':
-      //sendData($( '.speech .transcript' ).textContent,$( '.speech .confidence' ).textContent,"reco", true);
-      break;
- 
-    case 'abort':
-      //this.recognizer.abort();
-      /*
-      if (obj.clear) {
-        this.recognizer.transcript.textContent = '...';
-        this.recognizer.confidence.textContent = '0';
-      }*/
-      break;
-  
-    case 'start':
-      //this.recognizer.listen();
-      break;
-  
-
-
-
-    case 'plugin':
-    // DOMplugin.textContent = obj.plugin;
-      break;
-   
-case 'iconedomotique':
-document.getElementById(obj.imgx).src=obj.onoff
-console.log('icne domo                     ',obj.imgx+"    "+obj.onoff+"    ")
-break;
-
-case 'iconeedf':
-  document.getElementById("iconeedf").src =obj.iconeedf
-  console.log('icone edf                    ',obj.iconeedf+"    icone edf")
-break;
-case 'iconeedfdemain':
-  document.getElementById("iconeedfdemain").src =obj.iconeedfdemain
-  console.log('iconeedfdemain                ',obj.iconeedfdemain+ "     demain")
-break;
-
-   case 'icone': //icone à afficher
-   //console.log(myIP+" "+myIPretour+"!!!!!!!!!!!!!!!!!!"+obj.icone)
-   //if(myIP==obj.myIPretour){
-   if((myIP==obj.myIPretour)||(myIP=="")){
-    console.log('icone               ',obj.icone+"obj icone"); document.getElementById("myImg").src =obj.icone}
-    // }
-    //DOMplugin.textContent = obj.plugin
-    break;   
-   
+      
     case 'INFOMODIALE':
   var text = '<marquee>INFOS MONDIALES : '+obj.INFOMODIALE+'</marquee>';
-
-
-document.getElementById("INFOMODIALE").innerHTML = text;
-   // document.getElementById("INFOMODIALE").src=obj.INFOMODIALE
-      
+document.getElementById("INFOMODIALE").innerHTML = text;  
     break;
+
 case 'SCENARIO':
   var textscenario = '<marquee>SCENARIO: '+obj.SCENARIO+'</marquee>';
-
-
 document.getElementById("SCENARIO").innerHTML = textscenario;
-   // document.getElementById("INFOMODIALE").src=obj.INFOMODIALE
-      
+   // document.getElementById("INFOMODIALE").src=obj.INFOMODIALE    
     break;
 
     case 'saying':
-
+        speechSynthesis.cancel();   recognition.stop() 
         console.log("SAYING  MY IP : "+myIP,' Texte recue : '+obj.html,' IP RETOUR : '+obj.myIPretour)
-       // var Radio=document.getElementById("myRadio")
         try{Radio.pause();}
         catch(err){}
+//speech
 
-    //speech
-      var coupureson=1
-      msg.voiceURI = 'native';
-      msg.volume = 1; // 0 to 1
-      msg.rate = 1; //0 to 2  1
-      msg.pitch = 1; // 0.1 to 10  1
-      msg.lang = 'fr-FR';
-      msg.text=obj.html
-      msg.text=msg.text.replace('<span>','');
-      msg.text=msg.text.replace('</span>','');
-      msg.text=msg.text.replace('<span class="saying">','');
-      msg.text=msg.text.replace('</span>','');
-      msg.text=msg.text.slice(0,1700)//////prtotection longueur vocale
-      
-   // if((myIP==obj.myIPretour)&&(myIP!=="192.168.0.10")&&(myIP!=="e456:4855:2:23:3:22:")&&(msg.text.length>2)){
-      //console.log(msg.text.length+"lengthtttttt")
-      
-    //var ttt=msg.text
-    //ttt=ttt.slice(0, 150)
-    //console.log((ttt+"mmmmmmmmm")) 
+      var xx=obj.html
+      xx=xx.replace(new RegExp('\n', 'ig'),"")
+      msg.text=xx    
+      //msg.text=msg.text.slice(0,1700)//////protection longueur vocale
+      console.log(msg.text.length,'    txt length')
 
-          if( (myIP==obj.myIPretour)&&(myIP!=="XXXXXXX") || (obj.myIPretour=='localhost')){supervariable=1111
-        
+          if( (myIP==obj.myIPretour) || (obj.myIPretour=='localhost')){coupureson=1
+       
+        console.log(msg.text,' message txt')
                 textarearesponse.value=msg.text        
-                console.log("debut de parole               "+voices.length)
-        
-                 for(var j=0;j<voices.length;j++){
-                                                 // console.log( voices[j].name+"         voices N      "+j)
- 
-                                                      if(voices[j].name.search('Google français')>-1){console.log(j);msg.voice = voices[j]}
-                }
-               
-                // Note: some voices don't support altering params
-                console.log(msg.voice+"             msg voice")
-              
-//msg=msg.slice(0,150)
+                console.log("debut de parole               ")
+             
                 document.getElementById("myImgvisage").src ="icones/Images/anim.gif"
                 speechSynthesis.speak(msg);obj.command=""
                 
-                 var r = setInterval(function () {
-                console.log(speechSynthesis.speaking+"                  speaking");
-                if (speechSynthesis.speaking==true) {clearInterval(r);document.getElementById("myImgvisage").src ="icones/Images/0.gif"}
-                else {speechSynthesis.cancel();speechSynthesis.resume();//document.getElementById("myImgvisage").src ="icones/Images/0.png"
-              }
-            }, 14000);
-    // speechSynthesisInstance.cancel();             
+                var r = setTimeout(function () {
+              console.log(speechSynthesis.speaking+"                  arret par sécurité 14 s");
+             if (speechSynthesis.speaking==true) {document.getElementById("myImgvisage").src ="icones/Images/0.gif";speechSynthesis.cancel();clearInterval(r) }
+           //else {speechSynthesis.cancel();clearInterval(r)//document.getElementById("myImgvisage").src ="icones/Images/0.png"
+           //}
+           coupureson=0
+           //recognition.start()
+//resume reprendre  cancel cancel  pause pause 
+           //  speechSynthesis.cancel();speechSynthesis.resume();document.getElementById("myImgvisage").src ="icones/Images/0.gif"
+            }, 14*1000);
+    // speechSynthesis.cancel();             
                     msg.onend = function (event) {document.getElementById("myImgvisage").src ="icones/Images/0.gif"
                         //speechSynthesisInstance.cancel();
+                      // speechSynthesis.cancel();speechSynthesis.resume() 
+                        clearInterval(r);console.log(event.elapsedTime,' ms onend activé')
                         var Radio=document.getElementById("myRadio")              
                           if(Radio.paused){Radio.play()}
-                        console.log('                      fin de paroleeeee')
-                        msg.text=""
-                        var coupureson=0
-                        supervariable=0
-                        if(OSName.search("Windows")>-1){
+                                             msg.text=""
+                         coupureson=0
+                       
+                        if(OSName.search("Windows")>-1){coupureson=0
                         recognition.start()
                       }
                         
                     };
           }
        
-
-
-      //speechSynthesis.speak(msg);//location.reload();
-   // }
   
-        //location.  ();
-          try{console.log(mute,"                    mute")}
-          catch(err){console.log('erreur')}
-    //DOMsay.innerHTML = obj.html;
-   recognition.stop()            
+         
+              
     break;
     
  
@@ -638,12 +327,10 @@ console.log(obj.ImgAlarme+"                     obj alarme")
     case 'radio': //alarme on off
       console.log('radi       o'+text+myIP+obj.myIPretour)
      var text=obj.radio
-      //console.log('radi       o'+text+myIP+obj.myIPretour)
-     //console.log(text+"****************,,,********"+myIP+obj.myIPretour) 
-    //DOMalarmeaudio.textContent = text;
+      
     var Radio=document.getElementById("myRadio")
     //Radio.pause()
-     if((myIP==obj.myIPretour)||(myIP=="XXXXXXX")){
+     if(myIP==obj.myIPretour){
       text=text.replace('"',"");text=text.replace('"',"")
      document.getElementById("myRadio").src=text 
      var Radio=document.getElementById("myRadio")
@@ -662,7 +349,7 @@ console.log(obj.ImgAlarme+"                     obj alarme")
       //Musique.pause()
      var text=obj.musique
         
-        if((myIP==obj.myIPretour)||(myIP=="XXXXXXX")){
+        if(myIP==obj.myIPretour){
       
             //document.getElementById("myMusique").load();
             console.log(" MY IP : "+myIP,' Texte recue : '+obj.musique,' IP RETOUR : '+obj.myIPretour)
@@ -697,177 +384,19 @@ console.log(obj.ImgAlarme+"                     obj alarme")
 
 
  case 'Deezer':
- if((myIP==obj.myIPretour)||(myIP=="XXXXXXX")){
+ if(myIP==obj.myIPretour){
      document.getElementById("deezer").src = obj.Deezer;
      console.log(document.getElementById("deezer").src+"                   deezer") 
   }  
       break;
 
-case 'texteplugin': //texte recu
- if((myIP==obj.myIPretour)||(myIP=="XXXXXXX")){   console.log('obj texteplugin                     ',obj.texteplugin)
-    var text=obj.texteplugin;
-    var text=text.replace(new RegExp(":","gi"),"");
-    var text=text.replace(new RegExp('<span>',"gi"),'');
-    var text=text.replace(new RegExp('</span>',"gi"),'');
-    var text=text.replace(new RegExp('<span class="saying">',"gi"),'');
-    textarearesponse.value=text;
-  }  
-    break;
 
-case 'geolocalisation':
-if((myIP==obj.myIPretour)||(myIP=="XXXXXXX")){
-
-var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
-};
-
-
-
-function success(pos) {
-  var crd = pos.coords;
-
-  console.log('Your current position is:');
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
-var Latitude=crd.latitude
-var Longitude=crd.longitude
-
-var yourLocation = new google.maps.LatLng(Latitude, Longitude);var geocoder = new google.maps.Geocoder();
-
-geocoder.geocode({ 'latLng': yourLocation }, function (results, status) { console.log(results[0].formatted_address+" Adresse")
-        
-
-
-
-console.log(yourLocation+"your location")
-sendData("géolocalisationnepastoucher:"+Latitude+":"+Longitude+":os name:"+OSName+":myIP:"+myIP+":adresse:"+results[0].formatted_address)
-}); 
-
-}
-
-function error(err) {  sendData("géolocalisationnepastoucher:erreur");}
-
-navigator.geolocation.getCurrentPosition(success, error, options);
-
-
-}
-
-break;
     default:
   }
 }
 recognition.start()
-//this.recognizer = new Recognizer()
-  //this.recognizer.listen() 
-
-//myImgImgAlarme
-
-  
 
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style>
-  
-.myImg {
-    float:left;
-  
-}
-.ImgAlarme {
-    float:left;
-}
-.config {
-    float:left;
-}
-.configa {
-    float:left;
-}
-.forum {
-    float:left;
-}
-.hangouts {
-    float:left;
-}
-.iconeedf {
-    float:left;
-}
-.iconeedfdemain {
-    float:right;
-}
-.météo {
-    float:right;
-}
-.calendar {
-    float:right;
-}
-
-
-.Img0 {
-    float:left; margin:200px 0 0 0px
-}
-.Img1 {
-    float:left; margin:260px 0 0 -175px
-}
-.Img2 {
-    float:left; margin:320px 0 0 -175px
-}
-.Img3 {
-    float:left; margin:380px 0 0 -175px
-}
-.Img4 {
-    float:left; margin:440px 0 0 -175px
-}
-.Img5 {
-    float:left; margin:500px 0 0 -175px
-}
-.Img6 {
-    float:left; margin:560px 0 0 -175px
-}
-
-#container {
-    margin: -900px 1400px;
-    width: 150px;
-    height: 137px;
-    
-}
-#videoElement {
-    width: 150px;
-    height: 137px;
-    
-}
-</style>
-
-
-
-
-
-
 
   </body>
 </html>

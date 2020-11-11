@@ -15,11 +15,13 @@ var pathPlug=('./plugins')
 var files = fs.readdirSync(pathPlug)
 
 
-
+ JarvisDeezer=function(txt,txt2) {
+	sse.emit('/jarvispage', {command: "Deezer", Deezer: txt, 'myIPretour':txt2});
+}
 
 
 JarvisIASpeech = function JarvisIASpeech(txt,ip) {
-	
+//txt=txt.replace(new RegExp(',', 'ig'),"");txt=txt.replace(new RegExp('.', 'ig'),"");txt=txt.replace(new RegExp('-', 'ig'),"")
 	if(typeof ip==="undefined"){ console.log(' ip undefined')
 	try{var ip=JarvisIA.ipappel;
 if(ip==undefined){var ip=JarvisIAIpMaster;console.log('			ip undefined en 2')}
@@ -34,6 +36,7 @@ AddSpeakRnd.splice(0, 1)
 var rndaskpseak=Math.floor(Math.random()*(AddSpeakRnd.length))
 var AddSpeakRnd1=" "+AddSpeakRnd[rndaskpseak]	
 txt=txt+AddSpeakRnd1
+
 }
 }catch(err){console.log(err," error function js")}
 	sse.emit('/jarvispage', {command: "saying", 'html': txt,  'myIPretour': ip })
@@ -59,7 +62,7 @@ JarvisIAScenario = function SCENARIO(txt) {console.log('')
 }
 
 JarvisIARun = function JarvisIARun(txt) {console.log('')
-//SARAH.run('jarvispage',{ 'reco' : ScenarioMégane[compteurscenario] , 'confidence' : ScenarioMégane[compteurscenario+1]});   }, TempScenarioMégane);
+
 		console.log(txt[0]+' nom plug à activer')
 		console.log(txt.length)
 for(var i=1;i<txt.length;i++){
@@ -68,8 +71,8 @@ console.log(txt[i]," les datas à envoyer")
 	
 }
 var tempo=path.resolve('%CD%',"./plugins/"+txt[0]+"/"+txt[0]+".js").replace('\\%CD%', '')
-		     		var smartlife = require(tempo);
-					smartlife.action(data)
+		     		var smart = require(tempo);
+					smart.action(data)
 					delete require.cache[require.resolve(tempo)]
 		 			data={}
 		 			return 		

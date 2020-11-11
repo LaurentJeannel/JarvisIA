@@ -1,5 +1,3 @@
-
-
 function createAudioMeter(audioContext,clipLevel,averaging,clipLag) {
 	var processor = audioContext.createScriptProcessor(512);
 	processor.onaudioprocess = volumeAudioProcess;
