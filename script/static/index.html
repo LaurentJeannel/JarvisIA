@@ -233,7 +233,10 @@ if( (obj.command=='texteplugin')&&(obj.texteplugin.search("course")>-1 ) ){
 }   
  
   switch (obj.command) {
-  
+  case 'iconedomotique':
+document.getElementById(obj.imgx).src=obj.onoff
+console.log('icne domo                     ',obj.imgx+"    "+obj.onoff+"    ")
+break;
     case 'refresh':
       location.reload();
       break;
