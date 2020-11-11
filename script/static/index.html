@@ -72,6 +72,17 @@ var xmlhttp;
   xmlhttp=new XMLHttpRequest();
 myIPinterphone=""
 
+function aa(){
+  console.log('searchTxt :            ', searchTxt.value);
+  var txt=searchTxt.value
+  console.log('textsplit        ',txt.split(';'))
+  var txt=txt.split(';')
+  if (txt.length>1){myIPinterphone=txt[1];txt=txt[0]}
+  else{myIPinterphone=""  ; txt=txt[0]}
+  sendData(txt)
+  //aaa.push(searchTxt.value)
+document.getElementById('searchTxt').value = "";
+}
 var text = "<marquee>INFOS MONDIALES : </marquee>";
 document.getElementById("INFOMODIALE").innerHTML = text;
 
@@ -233,10 +244,7 @@ if( (obj.command=='texteplugin')&&(obj.texteplugin.search("course")>-1 ) ){
 }   
  
   switch (obj.command) {
-  case 'iconedomotique':
-document.getElementById(obj.imgx).src=obj.onoff
-console.log('icne domo                     ',obj.imgx+"    "+obj.onoff+"    ")
-break;
+  
     case 'refresh':
       location.reload();
       break;
