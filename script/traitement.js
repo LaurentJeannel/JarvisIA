@@ -31,7 +31,9 @@ var levi=function levi(){
 		else{console.log('rien donc stop car lazy'); return}
 }
 			
-var indextraitement=function indextraitement(){//console.log(JarvisIANomPlugins.length,"sssss")
+var indextraitement=function indextraitement(){txt=txt.trim()
+console.log(txt+"recu en index")
+//console.log(JarvisIANomPlugins.length,"sssss")
 for(var i=0;i<JarvisIANomPlugins.length;i++){
 					for (var j=0;j<JarvisIAPlugins[JarvisIANomPlugins[i]].length;j++){//   console.log(JarvisIAPlugins[JarvisIANomPlugins[i]][j]) 
 				    	if(JarvisIAPlugins[JarvisIANomPlugins[i]][j].indexOf(txt)>-1){

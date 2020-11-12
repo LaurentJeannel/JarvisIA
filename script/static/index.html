@@ -148,7 +148,42 @@ msg.lang = 'fr-FR';
     });
   }, 1000);
 }
-voicess()
+//voicess()
+               function setSpeech() {
+    return new Promise(
+        function (resolve, reject) {
+            let synth = window.speechSynthesis;
+            let id;
+
+            id = setInterval(() => {
+                if (synth.getVoices().length !== 0) {
+                    resolve(synth.getVoices());
+                    clearInterval(id);
+                }
+            }, 10);
+        }
+    )
+}
+
+let s = setSpeech();
+s.then((voices) => {
+  console.log(voices)
+msg = new SpeechSynthesisUtterance();
+msg.voiceURI = 'native';
+msg.volume = 1; // 0 to 1
+msg.rate = 1; // 0.1 to 10
+msg.pitch = 1; //0 to 2
+msg.lang = 'fr-FR';
+for(var j=0;j<voices.length;j++){
+        if(voices[j].name.search('Google français')>-1){console.log("voice  ; ",j);msg.voice = voices[j]}
+      }
+
+});    // Or any other actions you want to take...
+
+
+
+
+
 
 //////////debut
   
@@ -260,9 +295,13 @@ case 'SCENARIO':
 document.getElementById("SCENARIO").innerHTML = textscenario;
    // document.getElementById("INFOMODIALE").src=obj.INFOMODIALE    
     break;
-
+case 'iconedomotique':
+document.getElementById(obj.imgx).src=obj.onoff
+console.log('icne domo                     ',obj.imgx+"    "+obj.onoff+"    ")
+break;
     case 'saying':
-        speechSynthesis.cancel();   recognition.stop() 
+        speechSynthesis.cancel();  
+         recognition.stop() 
         console.log("SAYING  MY IP : "+myIP,' Texte recue : '+obj.html,' IP RETOUR : '+obj.myIPretour)
         try{Radio.pause();}
         catch(err){}
@@ -283,9 +322,12 @@ document.getElementById("SCENARIO").innerHTML = textscenario;
                 document.getElementById("myImgvisage").src ="icones/Images/anim.gif"
                 speechSynthesis.speak(msg);obj.command=""
                 
-                var r = setTimeout(function () {
-              console.log(speechSynthesis.speaking+"                  arret par sécurité 14 s");
-             if (speechSynthesis.speaking==true) {document.getElementById("myImgvisage").src ="icones/Images/0.gif";speechSynthesis.cancel();clearInterval(r) }
+                var r = setInterval(function () {
+              console.log(speechSynthesis.speaking+"                  relancé par sécurité 14 s");
+             if (speechSynthesis.speaking==true) {
+              //document.getElementById("myImgvisage").src ="icones/Images/0.gif";
+             speechSynthesis.resume();clearInterval(r) 
+           }
            //else {speechSynthesis.cancel();clearInterval(r)//document.getElementById("myImgvisage").src ="icones/Images/0.png"
            //}
            coupureson=0
@@ -293,11 +335,18 @@ document.getElementById("SCENARIO").innerHTML = textscenario;
 //resume reprendre  cancel cancel  pause pause 
            //  speechSynthesis.cancel();speechSynthesis.resume();document.getElementById("myImgvisage").src ="icones/Images/0.gif"
             }, 14*1000);
+
+var r2=setInterval(function(){
+  if (speechSynthesis.speaking==true) {clearInterval(r);clearInterval(r2);console.log('arret sécurité 60 secondes');speechSynthesis.cancel()}
+else{speechSynthesis.cancel()}
+  }, 60*1000);
+
+
     // speechSynthesis.cancel();             
                     msg.onend = function (event) {document.getElementById("myImgvisage").src ="icones/Images/0.gif"
                         //speechSynthesisInstance.cancel();
                       // speechSynthesis.cancel();speechSynthesis.resume() 
-                        clearInterval(r);console.log(event.elapsedTime,' ms onend activé')
+                        clearInterval(r);clearInterval(r2);console.log(event.elapsedTime,' ms onend activé')
                         var Radio=document.getElementById("myRadio")              
                           if(Radio.paused){Radio.play()}
                                              msg.text=""
