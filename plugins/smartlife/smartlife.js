@@ -1,4 +1,4 @@
-exports.action = function(data){
+exports.action = (data)=>{
 try{
 var actionsmartonoff=data.verifdomo
 console.log(actionsmartonoff,' demandé')
@@ -6,8 +6,8 @@ var request = require('request');
 
 
 var config={
-  userName: "xxxxxxxxxxxxxx",//mail d'inscription à l'appi smart
-  password: "xxxxxxxxxxxx",//code de connexion à l'api smart
+  userName: "xxxxxxxxxxxxx",
+  password: "xxxxxxxxxxxx",
   bizType: "smart_life",
   countryCode: "33",
   region: "eu"
@@ -67,7 +67,7 @@ else{var iconedomo="vide"}
 
 var options=config
 
-function varructor(config) {
+ var varructor=(config) =>{
     
     this.devices = [];
    
@@ -91,7 +91,7 @@ if(continu==0){
 
   }
 
-function login(options) {
+ var login=(options) =>{
     var config = options || {};
     var uri = this.uri+"/auth.do";
     var headers = {
@@ -108,8 +108,10 @@ function login(options) {
     };
 
     config.method = 'POST';
-     
-      request(postConfig, function(err, response, body) {
+     if (typeof(tok) !== 'undefined' ) {
+   console.log("Ma variable n'est ni nulle, ni une chaîne vide.");find(options,tok);return
+}
+     else{ request(postConfig, (err, response, body) =>{
        tokens= body
  
     tokens = JSON.parse(tokens);
@@ -118,7 +120,7 @@ function login(options) {
     //console.log(tokensnovar+"!!!!!!!!!!!!!!!!!!!!")
     this.accessToken = tokens.access_token;
     tok=this.accessToken
-
+console.log(tok,'          111111111111111111111111111111')
     if(tokens && tokens.responseStatus && tokens.responseStatus === 'error'){
       console.error(tokens.errorMsg);
       return false;
@@ -126,9 +128,9 @@ function login(options) {
     });
    
 }
+}
 
-
- function find(options,tok) {
+  var find=(options,tok) =>{
     const config = (options) || {};
     const uri = this.uri+"/skill";
     const data = {
@@ -152,26 +154,8 @@ function login(options) {
     };
    
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if( (typeof tableauip==='undefined') || (actionsmartonoff=="vérif") ){
+//|| (actionsmartonoff=="vérif")
+if( (typeof tableauip==='undefined')  ){
 
  tableauip=[]
     tableauvocale=""
@@ -180,8 +164,10 @@ if( (typeof tableauip==='undefined') || (actionsmartonoff=="vérif") ){
 
 
 
-     request(postConfig, function(err, response, body) {
-   
+     request(postConfig, (err, response, body)=> {//console.log(response)
+   try{
+    var temporaire=body.payload.devices.length
+   }catch(err){console.log('err');return}
    tableau=""  
    //console.log(body.payload.devices) 
 for(var a=0;a<body.payload.devices.length;a++){
@@ -285,7 +271,7 @@ if(count!==temp.length){console.log('riennnnnnnnnn');return false}
 
 else{
 console.log(actionsmartonoff+" action demandée")
-if(actionsmartonoff=="vérif"){
+if(actionsmartonoff=="vérifold"){
   console.log(body.payload.devices.length+"prises détectées ; "+tableauvocale+ " ; ")
   JarvisIASpeech(body.payload.devices.length+"prises détectées ; "+tableauvocale+ " ; ")  
 console.log('on vocalise et fin')
@@ -330,7 +316,7 @@ if(count!==temp.length){console.log('riennnnnnnnnn');return false}
 
 
 
-function setState(options,idd) {
+ var setState=(options,idd) =>{
     const config = (options) || {};
     const payload = (config.payload) || {};
     // Scan network otherwise or no device id in options
@@ -372,8 +358,8 @@ payload.color=hsv_color
       headers:headers,
       json: data,
     };console.log(postConfig)
-    request(postConfig, function(err, response, body) {})
-console.log('finiiiiiiiiiiiiiii')
+    request(postConfig, (err, response, body)=> {})
+console.log('fin de la requete')
 return false
 
 }
