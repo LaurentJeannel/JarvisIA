@@ -20,7 +20,8 @@ var levi=function levi(){
 	for(var i=0;i<JarvisIAItemtab.length;i++){
 		var levitest=levenshtein(JarvisIAItemtab[i],txt)
 		var concordancelevi=(levitest*100)/JarvisIAItemtab[i].length
-			if(concordancelevi<20){
+		console.log(concordancelevi,JarvisIAItemtab[i])
+			if(concordancelevi<21){
 				console.log("trouvé en levenshtein 				",JarvisIAItemtab[i],concordancelevi);
 				txt=JarvisIAItemtab[i]
 				indextraitement();
@@ -69,6 +70,7 @@ for(var i=0;i<JarvisIANomPlugins.length;i++){
 										console.log(err)
 										delete require.cache[require.resolve(tempo)]
 				 						data={}
+				 						setTimeout(function(){ }, 10000);
 				 						return
 				 			}
 							delete require.cache[require.resolve(tempo)]
@@ -108,7 +110,7 @@ for(var i=0;i<JarvisIANomPlugins.length;i++){
 							     		try{console.log(data.tts," 			tts");if(data.tts!==undefined){JarvisIASpeech(data.tts);console.log('doneeeeeeee')}}catch(err){}
 										try{smartlife.action(data)}
 										catch(err){delete require.cache[require.resolve(tempo)]
-							 			data={};return}
+							 			data={};setTimeout(function(){ }, 10000);return}
 										delete require.cache[require.resolve(tempo)]
 							 			data={}				 	
 										return
@@ -120,6 +122,7 @@ for(var i=0;i<JarvisIANomPlugins.length;i++){
 							     		try{console.log(data.tts,"			tts");if(data.tts!==undefined){JarvisIASpeech(data.tts);console.log('doneeeeeeee')}}catch(err){}
 										try{smartlife.action()}
 										catch(err){delete require.cache[require.resolve(tempo)]
+							 			setTimeout(function(){ }, 10000);
 							 			data={}
 							 			return}
 										delete require.cache[require.resolve(tempo)]
@@ -234,6 +237,8 @@ for(var i=0;i<JarvisIANomPluginsNoRules.length;i++){
 			     			try{console.log(data.tts,"        tts");if(data.tts!==undefined){JarvisIASpeech(data.tts);console.log('doneeeeeeee')}}catch(err){}
 							try{smartlife.action(data)}
 							catch(err){delete require.cache[require.resolve(tempo)]
+
+								setTimeout(function(){ }, 10000);
 				 			data={}
 							return}
 							delete require.cache[require.resolve(tempo)]
@@ -254,6 +259,7 @@ return
 
 
 
-}catch(err){console.log(err," de traitement");return}
+}catch(err){console.log(err," de traitement");setTimeout(function(){ }, 10000);return}
 return
 }
+ 

@@ -1,5 +1,15 @@
 try{
-
+console.log("node js version    "+    process.version);
+//sudo npm cache clean -f
+//sudo npm install -g n
+//sudo npm stable
+//npm update
+//npm outdated
+//npm install serialport --build-from-source
+//npm install npm -g
+//node -v
+//npm -v
+//nvm install stable
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 //https://drive.google.com/drive/u/0/folders/1wlS25fvVdtspTrcLyt4B2IaPQrKXwtXo
 var requesta = require('request');
@@ -108,7 +118,8 @@ res.write('ok');res.end();
 
 var tempo2=path.resolve('%CD%',"./script/traitement.js").replace('\\%CD%', '')
 		     		var temp = require(tempo2);
-					temp.init(req)
+					try{temp.init(req)}
+					catch(err){console.log(err);setTimeout(function(){ }, 10000)}
 
 					delete require.cache[require.resolve(tempo2)]
 });//fin app get !!!!!!!
@@ -126,10 +137,10 @@ https.createServer({
 
 autorun_browser(false);
 
-setTimeout(function(){ 
-	console.log("")
-JarvisIASpeech("système activé et opérationnel, en attente d'instruction")
- }, 10000);
+//setTimeout(function(){ 
+//	console.log("")
+//JarvisIASpeech("système activé et opérationnel, en attente d'instruction")
+ //}, 10000);
 function autorun_browser(kill) {
 	var exec = require('child_process').exec;
 	if (kill==true) { var proc = JarvisIANircmd + 'closeprocess chrome.exe'}

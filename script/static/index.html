@@ -429,18 +429,20 @@ console.log(obj.ImgAlarme+"                     obj alarme")
             //DOMalarmeaudio.textContent = text;
               
               try{song.pause()}
-              catch(err){}
+              catch(err){console.log(err,"555555555555555555")}
+              if(text=="pause"){var musique= document.getElementById("myMusique");musique.pause();break}
+              if(text=="restard"){var musique= document.getElementById("myMusique");musique.play();break}
               var countmusique=0
               //for(var i=0;i<text.length;i++){
                 var musique= document.getElementById("myMusique")
                 console.log(text[0]+"                     text")
-                var tempmusique=text[0].replace('C:\\','')
+                var tempmusique=text[0].substring(3)
                 console.log(tempmusique+"                       text suite")
                 document.getElementById("myMusique").src='http://'+obj.myIPretour+':8091/'+tempmusique
                 musique.onended = function() {////document.getElementById("myAudio").src ="musique/3.mp3" 
                 countmusique=countmusique+1
                 if(countmusique<text.length){
-                  var tempmusique=text[countmusique].replace('C:\\','')
+                  var tempmusique=text[countmusique].substring(3)
                 console.log("musique suivante                 "+countmusique+ " "+tempmusique)
                 document.getElementById("myMusique").src='http://'+obj.myIPretour+':8091/'+tempmusique
                 }

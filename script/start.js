@@ -79,7 +79,7 @@ var tempo=path.resolve('%CD%',"./plugins/courtoisie/courtoisie.js").replace('\\%
 setTimeout(function(){
 console.log('init info') 
 JarvisIARun(['info','data.infomiroir="1"']) 
-}, 1000*30);
+}, 1000*15);
 
 
 setInterval(function(){ 
