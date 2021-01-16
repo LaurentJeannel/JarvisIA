@@ -1,6 +1,6 @@
 try{
 
-//process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 //https://drive.google.com/drive/u/0/folders/1wlS25fvVdtspTrcLyt4B2IaPQrKXwtXo
 var requesta = require('request');
 var fs = require('fs');

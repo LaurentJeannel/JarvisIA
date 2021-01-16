@@ -1,5 +1,5 @@
 
-     <item>vérifie la domotique <tag> data.verifdomo="vérif"</tag></item>
+    
      <item>allume la <tag> data.verifdomo="1"</tag></item>
      <item>allume le <tag> data.verifdomo="1"</tag></item>
      <item>allume l' <tag> data.verifdomo="1"</tag></item>
