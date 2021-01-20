@@ -9,6 +9,7 @@ var reg=["de ","qui est","recherche","  "]
 for(var a=0;a<reg.length;a++){
 temp=temp.replace(reg[a],"")
 }
+temp=temp.replace("œ","oe")
 temp=temp.trim()
 var url2="https://www.google.fr/search?q="+temp
 console.log(url2)

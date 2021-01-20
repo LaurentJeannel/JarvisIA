@@ -66,11 +66,11 @@ for(var i=0;i<JarvisIANomPlugins.length;i++){
 			     			var smartlife = require(tempo);
 			     			try{console.log(data.tts,"				valeur tts");if(data.tts!==undefined){JarvisIASpeech(data.tts);console.log('doneeeeeeee')}}catch(err){}
 							try{smartlife.action(data)}
-							catch(err){
+							catch(err){setTimeout(function(){ }, 10000);
 										console.log(err)
 										delete require.cache[require.resolve(tempo)]
 				 						data={}
-				 						setTimeout(function(){ }, 10000);
+				 						
 				 						return
 				 			}
 							delete require.cache[require.resolve(tempo)]
@@ -109,8 +109,9 @@ for(var i=0;i<JarvisIANomPlugins.length;i++){
 							     		var smartlife = require(tempo);
 							     		try{console.log(data.tts," 			tts");if(data.tts!==undefined){JarvisIASpeech(data.tts);console.log('doneeeeeeee')}}catch(err){}
 										try{smartlife.action(data)}
-										catch(err){delete require.cache[require.resolve(tempo)]
-							 			data={};setTimeout(function(){ }, 10000);return}
+										catch(err){setTimeout(function(){ }, 10000)
+											delete require.cache[require.resolve(tempo)]
+							 			data={};return}
 										delete require.cache[require.resolve(tempo)]
 							 			data={}				 	
 										return

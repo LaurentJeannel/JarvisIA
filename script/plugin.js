@@ -10,8 +10,6 @@ JarvisIAItemNoRules="";JarvisIAPluginsNoRules={};JarvisIANomPluginsNoRules=[];Ja
 var fs = require('fs');var pathPlug=('./plugins')
     
 var files = fs.readdirSync(pathPlug)
-//console.log(files,'ttttttttt')
-
 
 for(var a=0;a<files.length;a++){
 
@@ -23,8 +21,9 @@ for(var a=0;a<files.length;a++){
                                         console.log(err);
                                       var filestxt='<item>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<tag>data.xxxxxxxxxxxxxxxxxxxxxxxxxx="xxxxxxxxxxxxxxxxxxxxxxxx"</tag></item>'
                                         //return
-                                    }
-                                    if(filestxt.search("<NoRules>")>-1){
+                                    } //if(phrasedomo.search(new RegExp(temp[b],"gi"))>-1)
+                                      if(filestxt.search(new RegExp("<NoRules>","gi"))>-1){
+                                   // if(filestxt.search("<NoRules>")>-1){
                                         var filestxtNoRules=filestxt
                                         var filestxt='<item>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx<tag>data.xxxxxxxxxxxxxxxxxxxxxxxxxx="xxxxxxxxxxxxxxxxxxxxxxxx"</tag></item>'                                       
                                     }
@@ -40,7 +39,7 @@ for(var a=0;a<files.length;a++){
 
     						var phrasescourtes=phraseslongues.split('<tag>')
     						
-    				try{var phrasesfinal=phrasescourtes[0].split(';')} 
+    				try{var phrasesfinal=phrasescourtes[0].toLowerCase().split(';')} 
     				 catch(err){var phrasesfinal="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
     				
     				
@@ -81,7 +80,7 @@ for(var b=0;b<filestxtNoRules.length-1;b++){//phrases 1 à 1
 
                             var phrasescourtes=phraseslongues.split('<tag>')
                         
-                    try{var phrasesfinal=phrasescourtes[0].split(';')} 
+                    try{var phrasesfinal=phrasescourtes[0].toLowerCase().split(';')} 
                      catch(err){var phrasesfinal="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
                     
                     
@@ -183,7 +182,7 @@ var files = data.lazy
 
                             var phrasescourtes=phraseslongues.split('<tag>')
                            
-                    try{var phrasesfinal=phrasescourtes[0].split(';')} 
+                    try{var phrasesfinal=phrasescourtes[0].toLowerCase().split(';')} 
                      catch(err){var phrasesfinal="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
                     
                     
@@ -232,9 +231,11 @@ var tempo1=path.resolve('%CD%',"./plugins/"+JarvisIANomPlugins[a]+"/"+JarvisIANo
 console.log(" Init Module ...... "+tempo1)
             var temp = require(tempo1);
 
-try {temp.init()}
-catch(err){}
-
+console.log(temp.hasOwnProperty('init'));
+if(temp.hasOwnProperty('init')){
+  try {temp.init()}
+  catch(err){}
+}
           //delete require.cache[require.resolve(tempo1)]
 
 //var filestxt=fs.readFileSync('./plugins/'+files[a]+'/'+files[a]+".xml",'utf8').toString().trim()
