@@ -1,3 +1,4 @@
+process.on('uncaughtException', (err, origin) => {console.log(err,origin)});
 try{
 console.log("node js version    "+    process.version);
 //sudo npm cache clean -f
@@ -119,7 +120,7 @@ res.write('ok');res.end();
 var tempo2=path.resolve('%CD%',"./script/traitement.js").replace('\\%CD%', '')
 		     		var temp = require(tempo2);
 					try{temp.init(req)}
-					catch(err){console.log(err);setTimeout(function(){ }, 10000)}
+					catch(err){console.log(err)}
 
 					delete require.cache[require.resolve(tempo2)]
 });//fin app get !!!!!!!
@@ -144,10 +145,13 @@ autorun_browser(false);
 function autorun_browser(kill) {
 	var exec = require('child_process').exec;
 	if (kill==true) { var proc = JarvisIANircmd + 'closeprocess chrome.exe'}
-	else {	
+	else {	//"C:\Chrome\18.0.1024.45\chrome.exe" --user-data-dir="..\User Data\18" --chrome-version=18.0.1025.45
+
 var proc = 'start chrome.exe --app=https://127.0.0.1:4300 '
+//var proc = 'start chrome.exe --app=https://127.0.0.1:4300 '
+//"C:\12\11\chrome.exe" --user-data-dir="..\User Data\58" --chrome-version=11
 //var proc = 'start chrome.exe --window-size=800,600 --app=https://127.0.0.1:4300 --new-window'
-//var proc = 'C:\\JarvisIA\\chrome-win\\chrome "https://127.0.0.1:4300 " '
+//var proc = 'C:/12/11/chrome.exe --user-data-dir="../User Data/11" --chrome-version=11 "https://127.0.0.1:4300 " '
 //--kiosk http://example.com/
 	}
 //chrome.exe --app=https://duckduckgo.com --new-window
@@ -158,7 +162,7 @@ var proc = 'start chrome.exe --app=https://127.0.0.1:4300 '
 
 }//fin autorun
 
-}catch(err){setTimeout(function(){}, 100000);
+}catch(err){
 	console.log('');console.log(err)
 
 }
