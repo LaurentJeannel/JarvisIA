@@ -309,6 +309,7 @@ break;
 
       var xx=obj.html
       xx=xx.replace(new RegExp('\n', 'ig'),"")
+      xx=xx.replace(new RegExp("  ", 'ig')," ")
       msg.text=xx    
       //msg.text=msg.text.slice(0,1700)//////protection longueur vocale
       console.log(msg.text.length,'    txt length')
@@ -330,6 +331,7 @@ break;
         
              if (speechSynthesis.speaking==true) {
                 //document.getElementById("myImgvisage").src ="icones/Images/0.gif";
+                speechSynthesis.pause();
                  speechSynthesis.resume();//clearInterval(r) 
                  
              }
@@ -343,7 +345,7 @@ break;
            //resume reprendre  cancel cancel  pause pause 
            //  speechSynthesis.cancel();speechSynthesis.resume();document.getElementById("myImgvisage").src ="icones/Images/0.gif"
             }, 14*1000);
-
+//32,767 characters
 
 var r2=setInterval(function(){
   if (speechSynthesis.speaking==true) {
